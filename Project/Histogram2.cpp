@@ -32,22 +32,22 @@ int high(Mat hist) {
     return max;
 }
 // code 5.4
-// È÷½ºÅä±×·¥ ½ºÆ®·¹Äª ÇÔ¼ö 
+// íˆìŠ¤í† ê·¸ë¨ ìŠ¤íŠ¸ë ˆì¹­ í•¨ìˆ˜ 
 Mat histo_stretch(Mat input) {
     Mat stImg = input.clone();
 
-    // ¿µ»óÀÇ ´©Àû È÷½ºÅä±×·¥
+    // ì˜ìƒì˜ ëˆ„ì  íˆìŠ¤í† ê·¸ë¨
     Mat hist;
     int histSize = 256;
     float range[] = { 0, 256 };
     const float* histRange = { range };
     calcHist(&input, 1, 0, Mat(), hist, 1, &histSize, &histRange);
 
-    // È­¼Ò°ª ÃÖ¼Ò, ÃÖ´ë ÇÔ¼ö È£Ãâ
+    // í™”ì†Œê°’ ìµœì†Œ, ìµœëŒ€ í•¨ìˆ˜ í˜¸ì¶œ
     int min = low(hist);
     int max = high(hist);
 
-    // »õ È­¼Ò°ª °ø½Ä
+    // ìƒˆ í™”ì†Œê°’ ê³µì‹
     for (int y = 0; y < input.rows; y++) {
         for (int x = 0; x < input.cols; x++) {
             int output = (input.at<uchar>(y, x) - min) * 255 / (max - min);
@@ -62,7 +62,7 @@ int main() {
     Mat image = imread("C:/MICT/img/crayfish.jpg", IMREAD_GRAYSCALE);
 
     if (image.empty()) {
-        cout << "ÀÌ¹ÌÁö¸¦ ºÒ·¯¿Ã ¼ö ¾ø½À´Ï´Ù." << endl;
+        cout << "ì´ë¯¸ì§€ë¥¼ ë¶ˆëŸ¬ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << endl;
         return -1;
     }
 
