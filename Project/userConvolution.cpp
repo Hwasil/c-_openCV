@@ -1,4 +1,4 @@
-// 202195027 ¿ÀÈ­½Ç
+// 202195027 ì˜¤í™”ì‹¤
 #include "opencv2/opencv.hpp"
 #include <iostream>
 
@@ -15,10 +15,10 @@ Mat Convolution(Mat input, Mat mask) {
 
     output = Mat::zeros(imgRows, imgCols, CV_32F); 
 
-    // ÄÁº¼·ç¼Ç ¿¬»ê ¼öÇà
+    // ì»¨ë³¼ë£¨ì…˜ ì—°ì‚° ìˆ˜í–‰
     for (int i = 0; i < imgRows; i++) {
         for (int j = 0; j < imgCols; j++) {
-            // ¸¶½ºÅ© ÀÔ·Â¿µ»ó¿¡ Àû¿ë
+            // ë§ˆìŠ¤í¬ ìž…ë ¥ì˜ìƒì— ì ìš©
             float sum = 0.0;
             for (int k = 0; k < maskRows; k++) {
                 for (int l = 0; l < maskCols; l++) {
@@ -36,7 +36,7 @@ Mat Convolution(Mat input, Mat mask) {
 int main() {
     Mat src = imread("C:/MICT/img/lenna.jpg", IMREAD_GRAYSCALE);
 
-    float weights[9] = { -1, -1, -1, -1, 9, -1, -1, -1, -1 };   // ÄÁº¼·ç¼Ç Ä¿³Î °ª
+    float weights[9] = { -1, -1, -1, -1, 9, -1, -1, -1, -1 };   // ì»¨ë³¼ë£¨ì…˜ ì»¤ë„ ê°’
     // -1, -1, -1, -1, 9, -1, -1, -1, -1
     // 0, -1, 0, -1, 5, -1, 0, -1, 0
     // 1, -2, 1, -2, 5, -2, 1, -2, 1
@@ -45,7 +45,7 @@ int main() {
     Mat result = Convolution(src, mask);
 
     Mat resultDisplay;
-    result.convertTo(resultDisplay, CV_8U);                 // 8ºñÆ® ºÎÈ£¾ø´Â Á¤¼ö
+    result.convertTo(resultDisplay, CV_8U);                 // 8ë¹„íŠ¸ ë¶€í˜¸ì—†ëŠ” ì •ìˆ˜
 
     imshow("Original", src);
     imshow("Convolution", resultDisplay);
