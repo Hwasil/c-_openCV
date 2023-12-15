@@ -6,20 +6,20 @@ using namespace std;
 
 // code 5.5
 Mat equalizeHist(Mat src) {
-	// ¿µ»óÀÇ ´©Àû È÷½ºÅä±×·¥
+	// ì˜ìƒì˜ ëˆ„ì  íˆìŠ¤í† ê·¸ë¨
 	Mat hist;
 	int histSize = 256;
 	float range[] = { 0, 256 };
 	const float* histRange = { range };
 	calcHist(&src, 1, 0, Mat(), hist, 1, &histSize, &histRange);
 
-	// ´©Àû È÷½ºÅä±×·¥ °ªÀ» 0-1 »çÀÌ·Î Á¤±ÔÈ­
+	// ëˆ„ì  íˆìŠ¤í† ê·¸ë¨ ê°’ì„ 0-1 ì‚¬ì´ë¡œ ì •ê·œí™”
 	for (int i = 1; i < hist.rows; i++) {
 		hist.at<float>(i) += hist.at<float>(i - 1);
 	}
 	hist /= src.total();
 
-	// Á¤±ÔÈ­µÈ ´©Àû È÷½ºÅä±×·¥À» º¯È¯ ÇÔ¼ö·Î ÀÌ¿ëÇÏ¿© È­¼Ò°ªÀ» º¯È¯
+	// ì •ê·œí™”ëœ ëˆ„ì  íˆìŠ¤í† ê·¸ë¨ì„ ë³€í™˜ í•¨ìˆ˜ë¡œ ì´ìš©í•˜ì—¬ í™”ì†Œê°’ì„ ë³€í™˜
 	Mat dst = src.clone();
 	for (int y = 0; y < src.rows; y++) {
 		for (int x = 0; x < src.cols; x++) {
