@@ -21,7 +21,7 @@ int main() {
 	*/
 
 	/*
-	// code 9.5 -> ÄÚµå ÀÌÇØÇÏ±â! 
+	// code 9.5 -> Ã„ÃšÂµÃ¥ Ã€ÃŒÃ‡Ã˜Ã‡ÃÂ±Ã¢! 
 	Mat img = imread("C:/MICT/img/chroma.jpg");
 	Mat img2 = imread("C:/MICT/img/beach.png");
 
@@ -44,7 +44,7 @@ int main() {
 	imshow("dst1", dst1);
 	*/
 
-	// code 9.7
+	// code 9.6
 	VideoCapture cap("C:/MICT/img/tennis_ball.mp4");
 	if (!cap.isOpened()) return -1;
 
