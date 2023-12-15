@@ -1,17 +1,17 @@
-// 202195027 ¿ÀÈ­½Ç
+// 202195027 ì˜¤í™”ì‹¤
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
 using namespace cv;
 using namespace std;
 
-Mat img, img_with_rectangle; // img_with_rectangle »ç°¢ÇüÀÌ ±×·ÁÁú »õ·Î¿î ÀÌ¹ÌÁö
+Mat img, img_with_rectangle; // img_with_rectangle ì‚¬ê°í˜•ì´ ê·¸ë ¤ì§ˆ ìƒˆë¡œìš´ ì´ë¯¸ì§€
 Point startPoint, endPoint;
-bool cropping = false;  // »ç°¢Çü ¼±ÅÃ ÁßÀÓÀ» ³ªÅ¸³»´Â ÇÃ·¡±× º¯¼ö
+bool cropping = false;  // ì‚¬ê°í˜• ì„ íƒ ì¤‘ì„ì„ ë‚˜íƒ€ë‚´ëŠ” í”Œë˜ê·¸ ë³€ìˆ˜
 
-// ¸¶¿ì½º ÀÌº¥Æ® ¹ß»ı ½Ã È£ÃâµÇ´Â Äİ¹é ÇÔ¼ö
+// ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ë°œìƒ ì‹œ í˜¸ì¶œë˜ëŠ” ì½œë°± í•¨ìˆ˜
 void onMouse(int event, int x, int y, int flags, void* param) {
-    img_with_rectangle = img.clone(); // ÀÌ¹ÌÁö º¹»çº»
+    img_with_rectangle = img.clone(); // ì´ë¯¸ì§€ ë³µì‚¬ë³¸
     if (event == EVENT_LBUTTONDOWN) {
         startPoint = Point(x, y);
         cropping = true;
@@ -19,19 +19,19 @@ void onMouse(int event, int x, int y, int flags, void* param) {
     else if (event == EVENT_MOUSEMOVE && cropping) {
         endPoint = Point(x, y);
         rectangle(img_with_rectangle, startPoint, endPoint, Scalar(255, 0, 0), 1);
-        imshow("image", img_with_rectangle); // µå·¡±×
+        imshow("image", img_with_rectangle); // ë“œë˜ê·¸
     }
     else if (event == EVENT_LBUTTONUP) {
         endPoint = Point(x, y);
         cropping = false;
         rectangle(img_with_rectangle, startPoint, endPoint, Scalar(0, 255, 0), 1);
-        imshow("image", img_with_rectangle); // µå·¡±×·Î ±×¸° »ç°¢Çü
+        imshow("image", img_with_rectangle); // ë“œë˜ê·¸ë¡œ ê·¸ë¦° ì‚¬ê°í˜•
     }
 }
 
 int main() {
     img = imread("C:/MICT/img/Lenna.jpg", IMREAD_COLOR);
-    img_with_rectangle = img.clone(); // ÃÊ±â¿¡ »ç°¢ÇüÀÌ ±×·ÁÁöÁö ¾ÊÀº ¿øº» ÀÌ¹ÌÁö Ç¥½Ã
+    img_with_rectangle = img.clone(); // ì´ˆê¸°ì— ì‚¬ê°í˜•ì´ ê·¸ë ¤ì§€ì§€ ì•Šì€ ì›ë³¸ ì´ë¯¸ì§€ í‘œì‹œ
 
     imshow("image", img_with_rectangle);
 
@@ -40,7 +40,7 @@ int main() {
     while (1) {
         int key = waitKey(100);
         if (key == 'q') break;
-        else if (key == 'c') { // °ü½É ¿µ¿ª ÆÄÀÏ·Î ÀúÀå
+        else if (key == 'c') { // ê´€ì‹¬ ì˜ì—­ íŒŒì¼ë¡œ ì €ì¥
             Mat roi = img(Rect(startPoint, endPoint));
             imwrite("result.jpg", roi);
         }
