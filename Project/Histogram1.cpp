@@ -5,31 +5,31 @@ using namespace cv;
 
 // code 5.2 + 5.3
 void drawHist(int histogram[], Mat src) {
-	vector<Mat> bgr_planes;		// ¿µ»óµéÀÇ º¤ÅÍ
-	split(src, bgr_planes);		// ÀÔ·Â ¿µ»ó »ö»ó º°·Î ºĞ¸®
-	int histSize = 256;			// È÷½ºÅä±×·¥¿¡¼­ »ç¿ëµÇ´Â »óÀÚ °³¼ö
-	float range[] = { 0, 256 };	// È­¼Ò°ªÀÇ ¹üÀ§
+	vector<Mat> bgr_planes;		// ì˜ìƒë“¤ì˜ ë²¡í„°
+	split(src, bgr_planes);		// ì…ë ¥ ì˜ìƒ ìƒ‰ìƒ ë³„ë¡œ ë¶„ë¦¬
+	int histSize = 256;			// íˆìŠ¤í† ê·¸ë¨ì—ì„œ ì‚¬ìš©ë˜ëŠ” ìƒì ê°œìˆ˜
+	float range[] = { 0, 256 };	// í™”ì†Œê°’ì˜ ë²”ìœ„
 	const float* histRange = { range };
 	bool uniform = true, accumulate = false;
 	Mat b_hist, g_hist, r_hist;
 
-	// °¢ ÇÃ·¹ÀÎ¿¡ ´ëÇÑ È÷½ºÅä±×·¥ °è»ê
+	// ê° í”Œë ˆì¸ì— ëŒ€í•œ íˆìŠ¤í† ê·¸ë¨ ê³„ì‚°
 	calcHist(&bgr_planes[0], 1, 0, Mat(), b_hist, 1, &histSize, &histRange, uniform, accumulate);
 	calcHist(&bgr_planes[1], 1, 0, Mat(), g_hist, 1, &histSize, &histRange, uniform, accumulate);
 	calcHist(&bgr_planes[2], 1, 0, Mat(), r_hist, 1, &histSize, &histRange, uniform, accumulate);
 
-	// ¸·´ë ±×·¡ÇÁ°¡ ±×·ÁÁö´Â ¿µ»ó »ı¼º
+	// ë§‰ëŒ€ ê·¸ë˜í”„ê°€ ê·¸ë ¤ì§€ëŠ” ì˜ìƒ ìƒì„±
 	int hist_w = 512, hist_h = 400;
-	int bin_w = cvRound((double)hist_w / histSize);	// »óÀÚÀÇ Æø
-	// (ÄÃ·¯·Î Á¤ÀÇ)
+	int bin_w = cvRound((double)hist_w / histSize);	// ìƒìì˜ í­
+	// (ì»¬ëŸ¬ë¡œ ì •ì˜)
 	Mat histImage(hist_h, hist_w, CV_8UC3, Scalar(255, 255, 255));
 
-	// È÷½ºÅä±×·¥ ¹è¿­À» ÃÖ´ë°ªÀ¸·Î Á¤±ÔÈ­
+	// íˆìŠ¤í† ê·¸ë¨ ë°°ì—´ì„ ìµœëŒ€ê°’ìœ¼ë¡œ ì •ê·œí™”
 	normalize(b_hist, b_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
 	normalize(g_hist, g_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
 	normalize(r_hist, r_hist, 0, histImage.rows, NORM_MINMAX, -1, Mat());
 
-	// È÷½ºÅä±×·¥ °ªÀ» ¸·´ë·Î ±×¸®±â
+	// íˆìŠ¤í† ê·¸ë¨ ê°’ì„ ë§‰ëŒ€ë¡œ ê·¸ë¦¬ê¸°
 	for (int i = 0; i < 255; i++) {
 		line(histImage, Point(bin_w * (i), hist_h),
 			Point(bin_w * (i), hist_h - b_hist.at<float>(i)), Scalar(255, 0, 0));
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
 	imshow("Input", src);
 	int histogram[256 * 3] = { 0 };
 	
-	// °¢ »ö»ó Ã¤³Î¿¡ ´ëÇÑ È÷½ºÅä±×·¥ °è»ê
+	// ê° ìƒ‰ìƒ ì±„ë„ì— ëŒ€í•œ íˆìŠ¤í† ê·¸ë¨ ê³„ì‚°
 	for (int y = 0; y < src.rows; y++) {
 		for (int x = 0; x < src.cols; x++) {
 			for (int c = 0; c < 3; ++c) {
