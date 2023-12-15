@@ -9,10 +9,10 @@ int main() {
 	Mat src = imread("C:/MICT/img/lenna.jpg", 1);
 
 	/*
-	// code 6.1 ¼öÁ¤
+	// code 6.1 ìˆ˜ì •
 	Mat dst(src.size(), CV_8UC3, Scalar(0, 0, 0));
 
-	// (1, 1)ºÎÅÍ (rows-1, cols-1) ±îÁöÀÇ È­¼Ò¸¸ Ã³¸®
+	// (1, 1)ë¶€í„° (rows-1, cols-1) ê¹Œì§€ì˜ í™”ì†Œë§Œ ì²˜ë¦¬
 	for (int y = 1; y < src.rows - 1; y++) {
 		for (int x = 1; x < src.cols - 1; x++) {
 			for (int c = 0; c < 3; c++) {
@@ -21,7 +21,7 @@ int main() {
 				sum += src.at<Vec3b>(y, x - 1)[c];
 				sum += src.at<Vec3b>(y + 1, x - 1)[c];
 				sum += src.at<Vec3b>(y - 1, x)[c];
-				sum += src.at<Vec3b>(y, x)[c];				// Áß°£°ª
+				sum += src.at<Vec3b>(y, x)[c];				// ì¤‘ê°„ê°’
 				sum += src.at<Vec3b>(y + 1, x)[c];
 				sum += src.at<Vec3b>(y - 1, x + 1)[c];
 				sum += src.at<Vec3b>(y, x + 1)[c];
@@ -33,12 +33,12 @@ int main() {
 
 	// code 6.3
 	Mat dst;
-	//blur(src, dst, Size(7, 7));		// ¸¶½ºÅ©·Î Æò±Õ°ª ÇÊÅÍ¸µ ¼öÇà
+	//blur(src, dst, Size(7, 7));		// ë§ˆìŠ¤í¬ë¡œ í‰ê· ê°’ í•„í„°ë§ ìˆ˜í–‰
 	
 	
 	// code 6.4
-	for (int i = 1; i < 31; i = i + 2) {			// È¦¼ö°ª
-		GaussianBlur(src, dst, Size(i, i), 0, 0);	// °¡¿ì½Ã¾È ½º¹«µù
+	for (int i = 1; i < 31; i = i + 2) {			// í™€ìˆ˜ê°’
+		GaussianBlur(src, dst, Size(i, i), 0, 0);	// ê°€ìš°ì‹œì•ˆ ìŠ¤ë¬´ë”©
 		imshow("Gaussian filter", dst);
 		waitKey(1000);
 	} 
