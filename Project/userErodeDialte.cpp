@@ -4,7 +4,7 @@
 using namespace cv;
 using namespace std;
 
-// »ç¿ëÀÚ Á¤ÀÇ ÇÔ¼ö : Ä§½Ä
+// ì‚¬ìš©ì ì •ì˜ í•¨ìˆ˜ : ì¹¨ì‹
 Mat userErode(const Mat& src, Mat& element) {
     Mat dst(src.size(), CV_8U, Scalar(0));
 
@@ -16,7 +16,7 @@ Mat userErode(const Mat& src, Mat& element) {
             Mat roi = src(roiRect);
             int minVal = 255;
 
-            // Ä§½Ä ¿¬»ê 
+            // ì¹¨ì‹ ì—°ì‚° 
             for (int y = 0; y < element.rows; ++y) {
                 for (int x = 0; x < element.cols; ++x) {
                     if (element.at<uchar>(y, x) != 0) {
@@ -32,7 +32,7 @@ Mat userErode(const Mat& src, Mat& element) {
     return dst;
 }
 
-// »ç¿ëÀÚ Á¤ÀÇ ÇÔ¼ö : ÆØÃ¢
+// ì‚¬ìš©ì ì •ì˜ í•¨ìˆ˜ : íŒ½ì°½
 Mat userDialte(const Mat& src, Mat& element) {
     Mat dst(src.size(), CV_8U, Scalar(0));
 
@@ -44,7 +44,7 @@ Mat userDialte(const Mat& src, Mat& element) {
             Mat roi = src(roiRect);
             int maxVal = 0;
 
-            // ÆØÃ¢ ¿¬»ê 
+            // íŒ½ì°½ ì—°ì‚° 
             for (int y = 0; y < element.rows; ++y) {
                 for (int x = 0; x < element.cols; ++x) {
                     if (element.at<uchar>(y, x) != 0) {
@@ -63,7 +63,7 @@ Mat userDialte(const Mat& src, Mat& element) {
 int main() {
     Mat src = imread("C:/MICT/img/morph.jpg", IMREAD_GRAYSCALE);
 
-    // ½ÊÀÚÇü ÇüÅÂ¼Ò
+    // ì‹­ìí˜• í˜•íƒœì†Œ
     // Mat element = getStructuringElement(MORPH_CROSS, Size(3, 3), Point(-1, -1));
     Mat element = (Mat_<uchar>(3, 3) << 0, 1, 0, 1, 1, 1, 0, 1, 0);
 
