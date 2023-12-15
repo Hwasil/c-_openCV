@@ -1,4 +1,4 @@
-// 202195027 ¿ÀÈ­½Ç
+// 202195027 ì˜¤í™”ì‹¤
 #include "opencv2/opencv.hpp"
 #include <iostream>
 
@@ -9,12 +9,12 @@ int main() {
 	Mat img1 = Mat::zeros(Size(500, 500), CV_8UC1);
 	Mat img2 = Mat::zeros(Size(500, 500), CV_8UC1);
 
-	// °ü½É ¿µ¿ª ÁöÁ¤
+	// ê´€ì‹¬ ì˜ì—­ ì§€ì •
 	circle(img1, Point(250, 250), 180, Scalar(255, 255, 255), -1);
 	imshow("img1", img1);
 
-	Mat t2 = img2(Range(0, 500), Range(0, 250));	// °ü½É¿µ¿ªÀ» º°µµÀÇ Mat °´Ã¼·Î »ı¼º
-	t2 = 255;										// °ü½É¿µ¿ªÀÇ ¸ğµç È­¼Ò 255
+	Mat t2 = img2(Range(0, 500), Range(0, 250));	// ê´€ì‹¬ì˜ì—­ì„ ë³„ë„ì˜ Mat ê°ì²´ë¡œ ìƒì„±
+	t2 = 255;										// ê´€ì‹¬ì˜ì—­ì˜ ëª¨ë“  í™”ì†Œ 255
 	imshow("img2", img2);
 
 	Mat result;
