@@ -4,31 +4,32 @@
 using namespace cv;
 using namespace std;
 
+// ì˜¤ë¥˜ ì½”ë“œ
 int main() {
 	Mat img = imread("opencv.png", IMREAD_COLOR);
-	if (img.empty()) { cout << "¿µ»óÀ» ÀÐÀ» ¼ö ¾øÀ½" << endl;  return -1; }
+	if (img.empty()) { cout << "ì˜ìƒì„ ì½ì„ ìˆ˜ ì—†ìŒ" << endl;  return -1; }
 	imshow("Original img", img);
 
 	int stRow, endRow;
-	cout << "ÇàÀÇ ¼ö = " << img.rows << endl;
-	cout << "¿­ÀÇ ¼ö = " << img.cols << endl;
-	cout << "Çà·ÄÀÇ Å©±â = " << img.size() << endl;
+	cout << "í–‰ì˜ ìˆ˜ = " << img.rows << endl;
+	cout << "ì—´ì˜ ìˆ˜ = " << img.cols << endl;
+	cout << "í–‰ë ¬ì˜ í¬ê¸° = " << img.size() << endl;
 
-	cout << "ÀÔ·Â¹ÞÀ» Ã³À½ Çà : ";
+	cout << "ìž…ë ¥ë°›ì„ ì²˜ìŒ í–‰ : ";
 	cin >> stRow;
 	
-	cout << "ÀÔ·Â¹ÞÀ» ¸¶Áö¸· Çà : ";
+	cout << "ìž…ë ¥ë°›ì„ ë§ˆì§€ë§‰ í–‰ : ";
 	cin >> endRow;
 
 	for (int r = stRow; r <= endRow; r++) {
 		for (int j = 0; j < img.cols; ++j) {
-			//cout << "Çà : " << saturate_cast<uchar>(img.at<uchar>(r, j)) << endl;
+			//cout << "í–‰ : " << saturate_cast<uchar>(img.at<uchar>(r, j)) << endl;
 			int b = img.at<Vec3b>(r, j)[0];
 			int g = img.at<Vec3b>(r, j)[1];
 			int r = img.at<Vec3b>(r, j)[2];
 			cout << b << " " << g << " " << r << endl;
 		}
-		//cout << "Çà Á¾·á" << endl; // µð¹ö±ë¿ë
+		//cout << "í–‰ ì¢…ë£Œ" << endl; // ë””ë²„ê¹…ìš©
 	}
 	
 	waitKey(0);
