@@ -4,6 +4,7 @@
 using namespace cv;
 using namespace std;
 
+// code 2.2
 int main()
 {
 	Mat image; // 비어있는 Mat 객체(영상 데이터 표현)
